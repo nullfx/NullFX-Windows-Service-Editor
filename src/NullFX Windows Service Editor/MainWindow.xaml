@@ -1,0 +1,73 @@
+﻿<Window x:Class="NullFX.ServiceEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NullFX.ServiceEditor"
+        mc:Ignorable="d"
+        Title="NullFX Windows Service Editor" MinHeight="300" Height="300" MinWidth="491" Width="491" Background="WhiteSmoke" ResizeMode="CanResizeWithGrip" SizeToContent="Height" WindowStartupLocation="CenterScreen" >
+
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom" Background="WhiteSmoke">
+            <StatusBarItem BorderBrush="LightGray" BorderThickness="0,1,0,0">
+                <Label Name="successStatus" Height="20" Background="WhiteSmoke" Padding="0,0,0,0" VerticalContentAlignment="Stretch" Margin="3,1,3,1" />
+            </StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <TabControl Margin="13,13,13,13" DockPanel.Dock="Top" Padding="13">
+                <TabItem Header="Install A Service" TabIndex="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" MinWidth="120" MaxWidth="120"/>
+                            <ColumnDefinition  />
+                            <ColumnDefinition Width="32" MaxWidth="32" MinWidth="32" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Service Name" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0" TabIndex="1"/>
+                        <Label Content="Display Name" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1" TabIndex="3"/> 
+                        <Label Content="Application Path" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2" TabIndex="5"/> 
+                        <Label Content="Logon As Name" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="3" TabIndex="8" /> 
+                        <Label Content="Logon As Password" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="4" TabIndex="10"/>
+
+                        <TextBox Name="serviceName" Grid.Column="1" Grid.Row="0" Margin="3" PreviewKeyDown="ValidateServiceName" TabIndex="2" />
+                        <TextBox Name="displayName" Grid.Column="1"  Grid.Row="1"  Margin="3" TabIndex="4" />
+                        <TextBox Name="applicationPath" Grid.Column="1"  Grid.Row="2"  Margin="3" TabIndex="6" />
+                        <Button Name="browse" Content="..." Width="24" MinWidth="24" MaxWidth="24" HorizontalAlignment="Right" Click="HandleOnBrowseAppPath" Grid.Column="2"  Grid.Row="2" Margin="3" TabIndex="7" />
+                        <TextBox Name="logonName" Grid.Column="1"  Grid.Row="3"  Margin="3" TabIndex="9" />
+                        <PasswordBox Name="logonPassword" Grid.Column="1"  Grid.Row="4"  Margin="3" TabIndex="11" />
+                        <Button Name="installService" Content="Install" Click="HandleInstallService" Width="75" MinWidth="75" MaxWidth="75" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="5" Margin="3" TabIndex="12" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Uninstall A Service" TabIndex="13">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" MinWidth="120" MaxWidth="120"/>
+                            <ColumnDefinition  />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Name="warning" HorizontalAlignment="Stretch" TextWrapping="Wrap" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" MaxWidth="300" Margin="0,0,0,10" FontSize="11" FontWeight="SemiBold" Width="400" >***WARNING***<LineBreak/> REMOVING windows services can break your operating system and brick your computer.  This feature is only for people who know what they're doing and know how to re-add  the service if they remove something critical.  We are not responsible if you break your computer.  Use at your own risk!</TextBlock>
+                        <Label Content="Windows Service" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="3" TabIndex="14"/>
+
+                        <ComboBox Name="uninstallServiceName" Grid.Column="1" Grid.Row="3" Margin="3" DropDownOpened="HandleDropdownOpening" SelectionChanged="HandleSelectionChanged" TabIndex="15"  />
+                        <Button Name="uninstallService" Content="Uninstall" IsEnabled="False" Click="HandleUninstallService" Width="75" MinWidth="75" MaxWidth="75" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="4" Margin="3" TabIndex="16" />
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+</Window>
