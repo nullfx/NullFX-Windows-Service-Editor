@@ -12,7 +12,7 @@ To install an application as a service:
 2. Populate the applications Display name
 3. Specify the file path to the executable
 4. If the service requires a Log On as account, specify the credentials to the user who has been assigned to the Log On As service group
-5. Provide the Log On users password
+5. If the service requires a Log On as account, specify the credential password
 6. Click Install
 
 ![](img/install.png)
