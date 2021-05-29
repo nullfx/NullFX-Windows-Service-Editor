@@ -1,10 +1,12 @@
 # NullFX Windows Service Editor
 
-The NullFX Windows Service Editor is a utility that allows applications to be installed or uninstalled as windows services.
+The NullFX Windows Service Editor is an app that facilitates the simple installation and removal of windows services.
 
-Applications it registers need to implement windows service apis, either the [standard Win32](https://docs.microsoft.com/en-us/windows/win32/api/winsvc/nc-winsvc-lpservice_main_functionw) functions or the .net [ServiceBase](https://docs.microsoft.com/en-us/dotnet/api/system.serviceprocess.servicebase?view=dotnet-plat-ext-5.0) base class.  Executables containing these implementations will be able to register services using this utility.
+The applications that this utility can register as a windows service need to either implement [standard Win32](https://docs.microsoft.com/en-us/windows/win32/api/winsvc/nc-winsvc-lpservice_main_functionw) windows service apis or the .net [ServiceBase](https://docs.microsoft.com/en-us/dotnet/api/system.serviceprocess.servicebase?view=dotnet-plat-ext-5.0) base class.  While this utility can technically register any executable as a windows service, that service will not be able to respond to the service `Start` and `Stop` commands unless these API's are implemented in the executable.  
 
-## Installing An Application as a service
+Future releases will provide a Service Host (similar concept as `svchost.exe`) style application that can be configured to launch and terminate applications that do not implement the Win32 windows service API's or .net ServiceBase class allowing stand alone command line applications to run as services without any modifications. 
+
+## Installing an application to run as a service
 
 To install an application as a service:
 
@@ -19,11 +21,9 @@ To install an application as a service:
 ![](img/installed.png)
 
 
-## Uninstalling An Application as a service
+## Uninstalling a windows service
 
-NOTE: This application has the ability to uninstall **_any and all windows services_** including those required by the operating system.
-
-Because of this, it is possible, plausable, and most likely that you WILL do **_irreparable_** and catastrophic damage to your operating system for which you alone are responsible for. 
+**\*\*\*DISCLAIMER\*\*\***: This application has the ability to uninstall **_any and all windows services_** including those required to make your operating system function properly.  Removal of some windows services can cause you to have to reinstall your operating system.  This application should not be installed or used by anyone on a computer system they do not wish to completely destroy and we do not accept responsibility for any loss incured by the use of this software what so ever.  It is possible, plausable, and highly likely that you WILL do **_irreparable_** and catastrophic damage to your operating system for which the user alone bears full responsiblility for. 
 
 To uninstall a windows service:
 
