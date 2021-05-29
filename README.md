@@ -6,7 +6,7 @@ Applications it registers need to implement windows service apis, either the [st
 
 ## Installing An Application as a service
 
-To install an application as a service simply:
+To install an application as a service:
 
 1. Provide the applications Service name
 2. Populate the applications Display name
@@ -25,7 +25,7 @@ NOTE: This application has the ability to uninstall **_any and all windows servi
 
 Because of this, it is possible, plausable, and most likely that you WILL do **_irreparable_** and catastrophic damage to your operating system for which you alone are responsible for. 
 
-Use of this 
+To uninstall a windows service:
 
 1. Select the service you wish to uninstall
 2. Click Uninstall
@@ -37,3 +37,11 @@ Use of this
 ![](img/uninstalled.png)
 
 
+
+# How the Application Works
+
+The application works by using the Windows SDK and registering the applications by calling [CreateService](https://docs.microsoft.com/en-us/windows/win32/api/winsvc/nf-winsvc-createservicew) and [DeleteService](https://docs.microsoft.com/en-us/windows/win32/api/winsvc/nf-winsvc-deleteservice).  This simple utility doesn't register dependent services (which it could do in the future) or link existing services as dependencies to new services being registered (which it also could do).
+
+This is just an application I wrote (in win32) ages ago and converted to wpf to put up on github in case anyone else found it useful.  I've mostly moved over completely to macOS but find this useful for times when I need to register services for work.  
+
+**As it can seriously damage a system please use caution when using the uninstall feature.**
